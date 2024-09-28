@@ -17,23 +17,29 @@ class PreprocessingData:
     def removeColumns(self):
 
         """
-
         Removes the columns which wouldn' give too much information according to the discussion we had with Dr. Jacob in Project 1 Phase 1 in the office hours
 
         Returns:
             Pandas.DataFrame: DataFrame after we removed redundant features
         """
 
-        self.df = self.df.drop(columns={"host_id", "host_name", "name", "last_review", "reviews_per_month", 
-                              "calculated_host_listings_count", 
-                              "number_of_reviews_ltm", "license"})
+        self.df = self.df.drop(columns={
+            "host_id", 
+            "host_name", 
+            "last_review", 
+            "reviews_per_month", 
+            "calculated_host_listings_count", 
+            "number_of_reviews_ltm", 
+            "license"
+        })
         
         return self.df
     
 
     def gettingInsights(self):
 
-        """Putting some Print Statements in our code showing the number of unique elements in the features "neighbourhood_group", "neighbourhood", and "room_type"
+        """
+        Putting some Print Statements in our code showing the number of unique elements in the features "neighbourhood_group", "neighbourhood", and "room_type"
         """        
 
         print(f"Length of Neighbourhood Set Elements: {len(set(self.df['neighbourhood']))}")
@@ -46,18 +52,17 @@ class PreprocessingData:
 
         print(f"The Room types are: {set(self.df['room_type'])}")
 
-
     
-    def LabelEncoder(self,columns:list):
+    def labelEncoder(self,columns:list):
 
-        """Label Encodes the columns we choose to encode in the dataset, from the gettingInsights print statements, it is quite convinient to label encode the biggest feature (neighbourhood_group) to avoid increasing dimensionality so much.
+        """
+        Label Encodes the columns we choose to encode in the dataset, from the gettingInsights print statements, it is quite convinient to label encode the biggest feature (neighbourhood_group) to avoid increasing dimensionality so much.
 
         Arguments:
             list: columns which contain the column(s) we want to label encode.
 
         Returns:
             Pandas.DataFrame: DataFrame containing labels label encoded.
-
         """
 
         le = LabelEncoder()
@@ -84,16 +89,16 @@ class PreprocessingData:
         return self.df
 
 
-    def OneHotEncoder(self, columns:list):
+    def oneHotEncoder(self, columns:list):
 
-        """One Hot Encodes the columns we choose to encode in the dataset, we are going to encode the neighbourhood & room_type features.
+        """
+        One Hot Encodes the columns we choose to encode in the dataset, we are going to encode the neighbourhood & room_type features.
        
-         Arguments:
+        Arguments:
             list: columns which contain the column(s) we want to one-hot encode.
 
         Returns:
             Pandas.DataFrame: DataFrame containing labels one-hot encoded.
-
         """
 
 
@@ -123,7 +128,8 @@ class PreprocessingData:
         
         return self.df
 
-    def save_dataframe(self):
+
+    def saveDataframe(self):
 
         self.df.to_csv(self.output_path)
 
@@ -147,11 +153,11 @@ def main():
 
     obj.gettingInsights()
 
-    obj.LabelEncoder(['neighbourhood'])
+    obj.labelEncoder(['neighbourhood'])
 
-    obj.OneHotEncoder(['neighbourhood_group', 'room_type'])
+    obj.oneHotEncoder(['neighbourhood_group', 'room_type'])
 
-    obj.save_dataframe()
+    obj.saveDataframe()
 
 if __name__ == "__main__":
 
