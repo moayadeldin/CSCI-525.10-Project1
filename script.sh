@@ -1,6 +1,6 @@
 #!/bin/bash
 
-python df-analyze.py \
+python ../df-analyze/df-analyze.py \
   --df out.csv \
   --target price \
   --mode regress \
