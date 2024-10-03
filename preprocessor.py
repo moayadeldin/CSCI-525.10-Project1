@@ -1,12 +1,14 @@
-"""This code is a collaborative work between:
+"""
+*********************************************************************************
+This code is a collaborative work between:
 
-    Moayadeldin Hussain 
+    Moayadeldin Hussain
     Muhammad Javed
     Salal Ali Khan
 
 For CSCI-525.10 Project 1 Coursework submitted to Dr. Jacob Levmann.
+*********************************************************************************
 """
-
 
 import numpy as np
 import pandas as pd
@@ -18,15 +20,13 @@ import argparse
 
 class PreprocessingData:
 
-    def __init__(self,input_path,output_path):
+    def __init__(self, input_path, output_path):
 
         self.input_path = input_path
         self.output_path = output_path
         self.df = pd.read_csv(self.input_path)
 
-    
     def removeColumns(self):
-
         """
         Removes the columns which wouldn' give too much information according to the discussion we had with Dr. Jacob in Project 1 Phase 1 in the office hours
 
@@ -34,38 +34,42 @@ class PreprocessingData:
             Pandas.DataFrame: DataFrame after we removed redundant features
         """
 
-        self.df = self.df.drop(columns={
-            "host_id", 
-            "host_name", 
-            "last_review", 
-            "reviews_per_month", 
-            "calculated_host_listings_count", 
-            "number_of_reviews_ltm", 
-            "license"
-        })
-        
+        self.df = self.df.drop(
+            columns={
+                "host_id",
+                "host_name",
+                "last_review",
+                "reviews_per_month",
+                "calculated_host_listings_count",
+                "number_of_reviews_ltm",
+                "license",
+            }
+        )
+
         return self.df
-    
 
     def gettingInsights(self):
-
         """
         Putting some Print Statements in our code showing the number of unique elements in the features "neighbourhood_group", "neighbourhood", and "room_type"
-        """        
+        """
 
-        print(f"Length of Neighbourhood Set Elements: {len(set(self.df['neighbourhood']))}")
+        print(
+            f"Length of Neighbourhood Set Elements: {len(set(self.df['neighbourhood']))}"
+        )
 
-        print(f"Length of Neighbourhood Group Set Elements: {len(set(self.df['neighbourhood_group']))}")
+        print(
+            f"Length of Neighbourhood Group Set Elements: {len(set(self.df['neighbourhood_group']))}"
+        )
 
-        print(f"The Neighbourhood Group Set Elements are: {set(self.df['neighbourhood_group'])}")
+        print(
+            f"The Neighbourhood Group Set Elements are: {set(self.df['neighbourhood_group'])}"
+        )
 
         print(f"Length of Room Type Set Elements: {len(set(self.df['room_type']))}")
 
         print(f"The Room types are: {set(self.df['room_type'])}")
 
-    
-    def labelEncoder(self,columns:list):
-
+    def labelEncoder(self, columns: list):
         """
         Label Encodes the columns we choose to encode in the dataset, from the gettingInsights print statements, it is quite convinient to label encode the biggest feature (neighbourhood_group) to avoid increasing dimensionality so much.
 
@@ -77,13 +81,13 @@ class PreprocessingData:
         """
 
         le = LabelEncoder()
-        
+
         if columns is not None:
 
             for col in columns:
 
                 name_of_le_col = col + "_labelencoded"
-                
+
                 le_column = le.fit_transform(self.df[col])
 
                 self.df[name_of_le_col] = le_column
@@ -91,20 +95,21 @@ class PreprocessingData:
                 self.df = self.df.drop(columns=[col])
 
             print("Label Encoding Done Successfully.")
-        
 
         else:
 
-            raise(ValueError('This function can not be called without specfiying columns to encode'))
-        
+            raise (
+                ValueError(
+                    "This function can not be called without specfiying columns to encode"
+                )
+            )
+
         return self.df
 
-
-    def oneHotEncoder(self, columns:list):
-
+    def oneHotEncoder(self, columns: list):
         """
         One Hot Encodes the columns we choose to encode in the dataset, we are going to encode the neighbourhood & room_type features.
-       
+
         Arguments:
             list: columns which contain the column(s) we want to one-hot encode.
 
@@ -112,14 +117,15 @@ class PreprocessingData:
             Pandas.DataFrame: DataFrame containing labels one-hot encoded.
         """
 
-
-        ohe = OneHotEncoder(handle_unknown='ignore',sparse_output=False).set_output(transform='pandas')
+        ohe = OneHotEncoder(handle_unknown="ignore", sparse_output=False).set_output(
+            transform="pandas"
+        )
 
         if columns is not None:
 
             for col in columns:
 
-                array = self.df[col].values.reshape(-1,1)
+                array = self.df[col].values.reshape(-1, 1)
 
                 ohe_column = ohe.fit_transform(array)
 
@@ -135,13 +141,15 @@ class PreprocessingData:
 
         else:
 
-            raise(ValueError('This function can not be called without specfiying columns to encode'))
-        
+            raise (
+                ValueError(
+                    "This function can not be called without specfiying columns to encode"
+                )
+            )
+
         return self.df
 
-
-    def wordsBag(self, column:str):
-
+    def wordsBag(self, column: str):
         """
         Apply Bag of Words technique to determine most relevant words to our price prediction. Pearson Correlation Coefficient was used to pick the highest correlated words to solve the High/Curse of Dimensionality problem.
 
@@ -154,48 +162,54 @@ class PreprocessingData:
 
         """
 
-        self.df['name'] = self.df[column].fillna('')
+        self.df["name"] = self.df[column].fillna("")
 
         # this vectorizer transforms a collection of text in the this column to a matrix/token counts.
-        
-        vectorizer = CountVectorizer(max_features=100) # picks the top 100 frequent words
-        
+
+        vectorizer = CountVectorizer(
+            max_features=100
+        )  # picks the top 100 frequent words
+
         bow_tokens = vectorizer.fit_transform(self.df[column].tolist())
-        
+
         # now as we try to check if there are any names that has high correlation with the price feature, we will retrieve the price column from the dataframe and we will concatenate it with the tokens df.
-        
-        
-        bow_tokens_df = pd.DataFrame(bow_tokens.toarray(), columns=vectorizer.get_feature_names_out())
 
-        bow_tokens_df['Price'] = self.df['price']
+        bow_tokens_df = pd.DataFrame(
+            bow_tokens.toarray(), columns=vectorizer.get_feature_names_out()
+        )
 
-        
+        bow_tokens_df["Price"] = self.df["price"]
+
         """The idea of using correlation is to prevent Curse of dimensionality as we discussed in the meeting with Dr. Jacob, he suggested that as a bonus thing to do correlation would be a proper thing then we take the highest correlated columns"""
 
         # now we check correlation
 
-        bow_tokens_df_corrs = bow_tokens_df.corr(method='pearson')
+        bow_tokens_df_corrs = bow_tokens_df.corr(method="pearson")
 
-        highest_corr = bow_tokens_df_corrs['Price'].sort_values(ascending=False)
+        highest_corr = bow_tokens_df_corrs["Price"].sort_values(ascending=False)
 
-        highest_corr = highest_corr[(highest_corr>0.02) | (highest_corr<-0.02)] # we set the threshold to 0.02
+        highest_corr = highest_corr[
+            (highest_corr > 0.02) | (highest_corr < -0.02)
+        ]  # we set the threshold to 0.02
 
         """You may check the words with highest correlation here. For example, the highest positive correlation with price is for the word units, which is pretty logic! if a house name mentions the number/type of units, it is usually more expensive
         """
-        
+
         # print(highest_corr)
 
         # now we want to access these columns in the bag of words one hot encoded matrix and append it to our original dataframe.
 
         bow_columns = bow_tokens_df[highest_corr.index.tolist()]
 
-        bow_columns = bow_columns.drop(columns=['Price'])
+        bow_columns = bow_columns.drop(columns=["Price"])
 
         for col in bow_columns:
 
             self.df[col] = bow_columns[col]
 
-        print("Bag of Words with Handling Correlation & Dimensionality Curse Done Successfully")
+        print(
+            "Bag of Words with Handling Correlation & Dimensionality Curse Done Successfully"
+        )
 
         return self.df
 
@@ -203,13 +217,16 @@ class PreprocessingData:
 
         self.df.to_csv(self.output_path)
 
-        print(f"The preprocessed df is saved successfully to the following path {self.output_path}")
-
+        print(
+            f"The preprocessed df is saved successfully to the following path {self.output_path}"
+        )
 
 
 def main():
 
-    parser = argparse.ArgumentParser(description="Preprocessing our AirBNB 2023 NYC Data")
+    parser = argparse.ArgumentParser(
+        description="Preprocessing our AirBNB 2023 NYC Data"
+    )
 
     parser.add_argument("input_path", help="Path to the input CSV File")
 
@@ -223,29 +240,15 @@ def main():
 
     obj.gettingInsights()
 
-    obj.labelEncoder(['neighbourhood'])
+    obj.labelEncoder(["neighbourhood"])
 
-    obj.oneHotEncoder(['neighbourhood_group', 'room_type'])
+    obj.oneHotEncoder(["neighbourhood_group", "room_type"])
 
-    obj.wordsBag('name')
+    obj.wordsBag("name")
 
     obj.saveDataframe()
+
 
 if __name__ == "__main__":
 
     main()
-
-
-
-
-
-
-
-
-
-        
-
-
-                
-
-
