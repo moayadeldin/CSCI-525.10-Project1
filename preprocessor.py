@@ -1,7 +1,18 @@
+"""This code is a collaborative work between:
+
+    Moayadeldin Hussain 
+    Muhammad Javed
+    Salal Ali Khan
+
+For CSCI-525.10 Project 1 Coursework submitted to Dr. Jacob Levmann.
+"""
+
+
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import OneHotEncoder
+from sklearn.feature_extraction.text import CountVectorizer
 import argparse
 
 
@@ -129,6 +140,65 @@ class PreprocessingData:
         return self.df
 
 
+    def wordsBag(self, column:str):
+
+        """
+        Apply Bag of Words technique to determine most relevant words to our price prediction. Pearson Correlation Coefficient was used to pick the highest correlated words to solve the High/Curse of Dimensionality problem.
+
+        Arguments:
+            list: Contains the Name of the column we are going to apply Bag Of Words to
+
+        Returns:
+
+        Pandas.DataFrame: DataFrame contains labels columns with the highest impactful Bag of Words
+
+        """
+
+        self.df['name'] = self.df[column].fillna('')
+
+        # this vectorizer transforms a collection of text in the this column to a matrix/token counts.
+        
+        vectorizer = CountVectorizer(max_features=100) # picks the top 100 frequent words
+        
+        bow_tokens = vectorizer.fit_transform(self.df[column].tolist())
+        
+        # now as we try to check if there are any names that has high correlation with the price feature, we will retrieve the price column from the dataframe and we will concatenate it with the tokens df.
+        
+        
+        bow_tokens_df = pd.DataFrame(bow_tokens.toarray(), columns=vectorizer.get_feature_names_out())
+
+        bow_tokens_df['Price'] = self.df['price']
+
+        
+        """The idea of using correlation is to prevent Curse of dimensionality as we discussed in the meeting with Dr. Jacob, he suggested that as a bonus thing to do correlation would be a proper thing then we take the highest correlated columns"""
+
+        # now we check correlation
+
+        bow_tokens_df_corrs = bow_tokens_df.corr(method='pearson')
+
+        highest_corr = bow_tokens_df_corrs['Price'].sort_values(ascending=False)
+
+        highest_corr = highest_corr[(highest_corr>0.02) | (highest_corr<-0.02)] # we set the threshold to 0.02
+
+        """You may check the words with highest correlation here. For example, the highest positive correlation with price is for the word units, which is pretty logic! if a house name mentions the number/type of units, it is usually more expensive
+        """
+        
+        # print(highest_corr)
+
+        # now we want to access these columns in the bag of words one hot encoded matrix and append it to our original dataframe.
+
+        bow_columns = bow_tokens_df[highest_corr.index.tolist()]
+
+        bow_columns = bow_columns.drop(columns=['Price'])
+
+        for col in bow_columns:
+
+            self.df[col] = bow_columns[col]
+
+        print("Bag of Words with Handling Correlation & Dimensionality Curse Done Successfully")
+
+        return self.df
+
     def saveDataframe(self):
 
         self.df.to_csv(self.output_path)
@@ -156,6 +226,8 @@ def main():
     obj.labelEncoder(['neighbourhood'])
 
     obj.oneHotEncoder(['neighbourhood_group', 'room_type'])
+
+    obj.wordsBag('name')
 
     obj.saveDataframe()
 
