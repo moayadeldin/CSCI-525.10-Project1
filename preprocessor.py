@@ -1,10 +1,13 @@
-"""This code is a collaborative work between:
+"""
+*********************************************************************************
+This code is a collaborative work between:
 
     Moayadeldin Hussain
     Muhammad Javed
     Salal Ali Khan
 
 For CSCI-525.10 Project 1 Coursework submitted to Dr. Jacob Levmann.
+*********************************************************************************
 """
 
 import numpy as np
