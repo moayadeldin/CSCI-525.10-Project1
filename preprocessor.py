@@ -47,6 +47,34 @@ class PreprocessingData:
         )
 
         return self.df
+    
+    
+    def cleanPrices(self):
+
+        """
+        While exploring the dataset, we found out there are 27 records having the price "zero". We consider these records as noise outliers that should be removed because apparently no house rental is offered for free.
+
+        Returns:
+            Pandas.DataFrame: DataFrame after we removed outlier prices.
+        """
+
+        self.df = self.df[self.df['price']!=0]
+
+        return self.df
+    
+    def cleanNights(self):
+
+        """
+        We believe also to be able to better predict the minimum number of nights, removing outliers is very essential for improving our results. In our implementation, we define outliers as the number of nights that appear only once. This means we retain all records where the minimum nights value is repeated at least twice.
+
+        Retuns:
+            Pandas.DataFrame: DataFrame after we removed outlier nights number.
+        """
+
+        self.df = self.df[self.df['minimum_nights']>=2]
+
+        return self.df
+
 
     def gettingInsights(self):
         """
@@ -82,6 +110,8 @@ class PreprocessingData:
 
         le = LabelEncoder()
 
+        # # encoding_dict={}
+
         if columns is not None:
 
             for col in columns:
@@ -89,6 +119,10 @@ class PreprocessingData:
                 name_of_le_col = col + "_labelencoded"
 
                 le_column = le.fit_transform(self.df[col])
+
+                # encoding_dict[col] = dict(zip(le.classes_, le.transform(le.classes_)))
+
+                # print(encoding_dict)
 
                 self.df[name_of_le_col] = le_column
 
@@ -212,6 +246,7 @@ class PreprocessingData:
         )
 
         return self.df
+    
 
     def saveDataframe(self):
 
@@ -245,6 +280,10 @@ def main():
     obj.oneHotEncoder(["neighbourhood_group", "room_type"])
 
     obj.wordsBag("name")
+
+    obj.cleanPrices()
+
+    obj.cleanNights()
 
     obj.saveDataframe()
 

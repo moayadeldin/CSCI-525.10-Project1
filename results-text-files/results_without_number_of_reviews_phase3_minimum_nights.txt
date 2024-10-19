@@ -1,0 +1,165 @@
+<class 'tuple'> ('dummy', 'knn', 'lgbm', 'sgd', 'lr')
+<class 'list'> ['knn', 'lgbm', 'rf', 'elastic', 'sgd', 'dummy']
+<class 'list'> [<FeatureSelection.Filter: 'filter'>, <FeatureSelection.Embedded: 'embed'>, <FeatureSelection.Wrapper: 'wrap'>]
+<class 'list'> [<EmbedSelectionModel.LGBM: 'lgbm'>, <EmbedSelectionModel.Linear: 'linear'>]
+To silence these warnings, use `--verbosity=0`.
+[]
+Tuning Dummy Regressor for selection=none
+Tuning Dummy Regressor for selection=assoc
+Tuning Dummy Regressor for selection=pred
+Tuning Dummy Regressor for selection=embed_lgbm
+Tuning Dummy Regressor for selection=embed_linear
+Tuning Dummy Regressor for selection=wrap
+Tuning ElasticNet Regressor for selection=none
+Tuning ElasticNet Regressor for selection=assoc
+Tuning ElasticNet Regressor for selection=pred
+Tuning ElasticNet Regressor for selection=embed_lgbm
+Tuning ElasticNet Regressor for selection=embed_linear
+Tuning ElasticNet Regressor for selection=wrap
+Tuning K-Neighbours Regressor for selection=none
+Tuning K-Neighbours Regressor for selection=assoc
+Tuning K-Neighbours Regressor for selection=pred
+Tuning K-Neighbours Regressor for selection=embed_lgbm
+Tuning K-Neighbours Regressor for selection=embed_linear
+Tuning K-Neighbours Regressor for selection=wrap
+Tuning LightGBM Regressor for selection=none
+Tuning LightGBM Regressor for selection=assoc
+Tuning LightGBM Regressor for selection=pred
+Tuning LightGBM Regressor for selection=embed_lgbm
+Tuning LightGBM Regressor for selection=embed_linear
+Tuning LightGBM Regressor for selection=wrap
+Tuning LightGBM Random Forest Regressor for selection=none
+Tuning LightGBM Random Forest Regressor for selection=assoc
+Tuning LightGBM Random Forest Regressor for selection=pred
+Tuning LightGBM Random Forest Regressor for selection=embed_lgbm
+Tuning LightGBM Random Forest Regressor for selection=embed_linear
+Tuning LightGBM Random Forest Regressor for selection=wrap
+Tuning SGD Linear Regressor for selection=none
+Tuning SGD Linear Regressor for selection=assoc
+Tuning SGD Linear Regressor for selection=pred
+Tuning SGD Linear Regressor for selection=embed_lgbm
+Tuning SGD Linear Regressor for selection=embed_linear
+Tuning SGD Linear Regressor for selection=wrap
+# Final Model Performances
+
+## Training set performance
+
+model    selection     embed_selector      mae    mdae    msqe      r2    var-exp
+-------  ------------  ----------------  -----  ------  ------  ------  ---------
+knn      embed_linear  linear            0.000   0.000   0.000   1.000      1.000
+knn      assoc         none              0.000   0.000   0.000   1.000      1.000
+knn      pred          none              0.000   0.000   0.000   1.000      1.000
+lgbm     assoc         none              0.177   0.114   0.174   0.262      0.262
+rf       assoc         none              0.185   0.112   0.185   0.216      0.216
+lgbm     none          none              0.186   0.120   0.181   0.232      0.232
+lgbm     embed_linear  linear            0.187   0.124   0.181   0.231      0.231
+rf       embed_linear  linear            0.188   0.118   0.197   0.164      0.164
+rf       embed_lgbm    lgbm              0.188   0.115   0.195   0.174      0.174
+rf       none          none              0.192   0.122   0.202   0.143      0.143
+rf       pred          none              0.195   0.123   0.206   0.126      0.126
+lgbm     embed_lgbm    lgbm              0.197   0.131   0.197   0.163      0.163
+lgbm     pred          none              0.197   0.132   0.199   0.157      0.157
+knn      none          none              0.214   0.148   0.195   0.173      0.173
+knn      embed_lgbm    lgbm              0.215   0.150   0.197   0.164      0.164
+lgbm     wrap          none              0.217   0.156   0.223   0.054      0.054
+rf       wrap          none              0.217   0.149   0.223   0.054      0.054
+dummy    embed_linear  linear            0.236   0.000   0.256  -0.084      0.000
+dummy    embed_lgbm    lgbm              0.236   0.000   0.256  -0.084      0.000
+dummy    assoc         none              0.236   0.000   0.256  -0.084      0.000
+dummy    none          none              0.236   0.000   0.256  -0.084      0.000
+dummy    wrap          none              0.236   0.000   0.256  -0.084      0.000
+dummy    pred          none              0.236   0.000   0.256  -0.084      0.000
+sgd      wrap          none              0.236   0.086   0.248  -0.050      0.001
+sgd      embed_linear  linear            0.241   0.173   0.270  -0.145     -0.139
+sgd      assoc         none              0.243   0.121   0.276  -0.170     -0.156
+elastic  assoc         none              0.244   0.188   0.232   0.019      0.019
+sgd      pred          none              0.244   0.188   0.247  -0.048     -0.047
+elastic  embed_linear  linear            0.244   0.188   0.232   0.018      0.018
+sgd      embed_lgbm    lgbm              0.245   0.179   0.244  -0.036     -0.032
+elastic  none          none              0.246   0.186   0.232   0.017      0.017
+elastic  pred          none              0.248   0.186   0.233   0.012      0.012
+sgd      none          none              0.252   0.200   0.258  -0.094     -0.093
+elastic  embed_lgbm    lgbm              0.253   0.170   0.235   0.006      0.006
+elastic  wrap          none              0.255   0.174   0.236   0.002      0.002
+
+## Holdout set performance
+
+model    selection     embed_selector      mae    mdae    msqe      r2    var-exp
+-------  ------------  ----------------  -----  ------  ------  ------  ---------
+rf       embed_linear  linear            0.198   0.122   0.247   0.095      0.096
+lgbm     assoc         none              0.199   0.124   0.242   0.113      0.113
+rf       none          none              0.199   0.123   0.248   0.091      0.091
+rf       assoc         none              0.199   0.115   0.247   0.095      0.095
+rf       pred          none              0.200   0.124   0.251   0.083      0.083
+rf       embed_lgbm    lgbm              0.201   0.118   0.249   0.087      0.087
+lgbm     embed_linear  linear            0.201   0.129   0.242   0.114      0.115
+lgbm     none          none              0.201   0.124   0.244   0.106      0.106
+lgbm     pred          none              0.203   0.132   0.248   0.090      0.091
+lgbm     embed_lgbm    lgbm              0.203   0.131   0.248   0.091      0.091
+lgbm     wrap          none              0.222   0.158   0.263   0.037      0.038
+rf       wrap          none              0.222   0.153   0.263   0.038      0.038
+dummy    assoc         none              0.235   0.000   0.291  -0.065      0.000
+dummy    embed_lgbm    lgbm              0.235   0.000   0.291  -0.065      0.000
+dummy    embed_linear  linear            0.235   0.000   0.291  -0.065      0.000
+dummy    none          none              0.235   0.000   0.291  -0.065      0.000
+dummy    wrap          none              0.235   0.000   0.291  -0.065      0.000
+dummy    pred          none              0.235   0.000   0.291  -0.065      0.000
+sgd      wrap          none              0.236   0.085   0.284  -0.038      0.000
+knn      assoc         none              0.237   0.151   0.298  -0.091     -0.091
+knn      embed_lgbm    lgbm              0.239   0.169   0.274  -0.004     -0.004
+sgd      embed_linear  linear            0.240   0.169   0.283  -0.035     -0.030
+knn      none          none              0.241   0.171   0.276  -0.011     -0.011
+sgd      assoc         none              0.242   0.113   0.284  -0.040     -0.029
+knn      pred          none              0.243   0.150   0.359  -0.313     -0.313
+elastic  assoc         none              0.245   0.186   0.269   0.016      0.016
+elastic  embed_linear  linear            0.246   0.186   0.269   0.015      0.015
+sgd      embed_lgbm    lgbm              0.246   0.176   0.275  -0.008     -0.007
+sgd      pred          none              0.246   0.186   0.284  -0.040     -0.038
+elastic  none          none              0.247   0.184   0.270   0.013      0.013
+elastic  pred          none              0.250   0.183   0.271   0.009      0.009
+sgd      none          none              0.253   0.197   0.279  -0.020     -0.019
+elastic  embed_lgbm    lgbm              0.255   0.167   0.272   0.004      0.004
+knn      embed_linear  linear            0.256   0.017   0.457  -0.672     -0.672
+elastic  wrap          none              0.257   0.174   0.273   0.001      0.001
+
+## 5-fold performance on holdout set
+
+model    selection     embed_selector      mae    mdae    msqe      r2    var-exp
+-------  ------------  ----------------  -----  ------  ------  ------  ---------
+rf       embed_linear  linear            0.202   0.128   0.249   0.103      0.104
+rf       pred          none              0.202   0.126   0.251   0.092      0.093
+rf       none          none              0.202   0.129   0.250   0.099      0.100
+rf       embed_lgbm    lgbm              0.203   0.124   0.250   0.095      0.096
+rf       assoc         none              0.204   0.122   0.250   0.097      0.098
+lgbm     assoc         none              0.207   0.135   0.247   0.109      0.109
+lgbm     embed_linear  linear            0.207   0.138   0.247   0.111      0.111
+lgbm     none          none              0.208   0.135   0.248   0.105      0.105
+lgbm     pred          none              0.209   0.136   0.251   0.093      0.093
+lgbm     embed_lgbm    lgbm              0.209   0.137   0.251   0.093      0.093
+lgbm     wrap          none              0.222   0.157   0.264   0.039      0.039
+rf       wrap          none              0.222   0.159   0.264   0.039      0.039
+dummy    assoc         none              0.235   0.000   0.291  -0.080      0.000
+dummy    embed_lgbm    lgbm              0.235   0.000   0.291  -0.080      0.000
+dummy    embed_linear  linear            0.235   0.000   0.291  -0.080      0.000
+dummy    none          none              0.235   0.000   0.291  -0.080      0.000
+dummy    wrap          none              0.235   0.000   0.291  -0.080      0.000
+dummy    pred          none              0.235   0.000   0.291  -0.080      0.000
+sgd      wrap          none              0.238   0.141   0.282  -0.040     -0.013
+elastic  assoc         none              0.244   0.176   0.269   0.019      0.019
+elastic  embed_linear  linear            0.244   0.176   0.269   0.018      0.019
+knn      assoc         none              0.245   0.156   0.317  -0.212     -0.210
+knn      pred          none              0.245   0.157   0.323  -0.240     -0.239
+sgd      embed_lgbm    lgbm              0.246   0.143   0.284  -0.044     -0.035
+sgd      pred          none              0.246   0.141   0.282  -0.040     -0.027
+elastic  none          none              0.246   0.174   0.269   0.017      0.017
+sgd      assoc         none              0.248   0.137   0.288  -0.070     -0.051
+elastic  pred          none              0.248   0.169   0.271   0.011      0.012
+knn      none          none              0.248   0.176   0.287  -0.070     -0.070
+knn      embed_lgbm    lgbm              0.250   0.179   0.288  -0.074     -0.073
+sgd      none          none              0.253   0.167   0.293  -0.081     -0.059
+elastic  embed_lgbm    lgbm              0.253   0.156   0.272   0.005      0.005
+elastic  wrap          none              0.256   0.161   0.273   0.001      0.002
+knn      embed_linear  linear            0.264   0.021   0.494  -1.000     -0.998
+sgd      embed_linear  linear            0.297   0.169   0.419  -0.526     -0.408
+
+
