@@ -23,7 +23,7 @@
   \vspace{0.5cm}
   {\large Dr. Jacob Levman \par}
   \vspace{1cm}
-  {\Large Phase 2 Report \par}
+  {\Large Phase 3 Report \par}
   \vspace{1cm}
   {\large Khan, Salal Ali\\ \texttt{202307216 - x2023flb@stfx.ca} \par}
   \vspace{0.5cm}
@@ -32,7 +32,7 @@
   {\large Javed, Muhammad\\ \texttt{202303808 - x2023dvh@stfx.ca} \par}
   \vfill
   \vspace{0.5cm}
-  {\large Oct 3, 2024 \par}
+  {\large Oct 20, 2024 \par}
 \end{figure}
 
 \end{titlepage}
@@ -85,7 +85,7 @@ The first step to preprocess our dataset was to remove columns that we may consi
 
 Hence, we decided to drop \textit{`host\_id, host\_name, last\_review, reviews\_per\_month, calculated\_host\_listings\_count, number\_of\_reviews\_ltm, license'} attributes.
 
-It is implemented also in the code a function called `gettingInsights()' which prints out the number of unique elements in `neighbourhood, neighbourhood\_group, room\_type' attributes. Moreover, it prints out the unique elements in the last two aforementioned attributes. 
+It is implemented also in the code a function called `gettingInsights()' which prints out the number of unique elements in `neighbourhood, neighbourhood\_group, room\_type' attributes. Moreover, it prints out the unique elements in the last two aforementioned attributes.
 
 As mentioned in the project proposal, our first two main goals is to predict the minimum number of nights one user may spend in one apartment, and also the prices. In order to achieve that with higher accuracy, we decided to remove what we considered as `outliers' during our data exploration, these outliers would be defined as:
 
@@ -126,7 +126,7 @@ After our discussions with Dr. Jacob, we decided to use Label Encoding technique
 
 Regarding the One Hot Encoding, when we say we store one-hot encoded values directly, we refer to saving an actual one or zero for each element of a vector [8]. We decided we are going to encode both the \textit{`neighbourhood\_group' } and `room\_type'. There are 5 Neighbourhood Group Set Elements which are `Queens', `Manhattan', `Staten Island', `Bronx', `Brooklyn'. Moreover, there are 4 Room Type Set Elements which are `Entire home/apt', `Shared room', `Hotel room', `Private room'. Each of these attributes were used resulting in adding 9 additional features to the dataset, each one represents OHE for the specific attribute. \newline
 
-On the Bag of Words technique, we consider our implementation in this area a contribution in this type of work. The bag of words (BOW) method can be employed to treat each remaining word as a feature of the document [9]. According to our discussions with Dr. Jacob, we needed to determine the most relevant words in the names of properties. In order to do so, the literature review in this area usually focus on using some kind of Word Embedding technique to handle such case. However, we thought that in this Project 1 work we may address it in a different, easier and much innovative way. 
+On the Bag of Words technique, we consider our implementation in this area a contribution in this type of work. The bag of words (BOW) method can be employed to treat each remaining word as a feature of the document [9]. According to our discussions with Dr. Jacob, we needed to determine the most relevant words in the names of properties. In order to do so, the literature review in this area usually focus on using some kind of Word Embedding technique to handle such case. However, we thought that in this Project 1 work we may address it in a different, easier and much innovative way.
 
 We decided to pick up the top 100 frequent words in our name column and check for the words that has high correlation with the price feature, we put a threshold of positive/negative correlation (+/-0.02) in order to determine whether this word is relevant or not, we used Pearson's correlation coefficient. Correlation coefficients are utilized to evaluate the strength and direction of linear relationships between variables pairs. [10]. Our approach returned eight different words with highest correlation which were `luxury', `hotel', `floor', `city', `private', `in', `cozy', `room'. Afterwards, we applied One Hot Encoding to make each occurrence of a word in a record counts, and finally, we append the result of the encoding to the dataframe as columns.
 
@@ -155,19 +155,19 @@ Phase 3 & Label Encoding, One Hot Encoding, Removing Redundant Features, Impleme
     \resizebox{\textwidth}{!}{%
     \begin{tabular}{|c|c|c|c|c|}
         \hline
-        \textbf{Phase Number} & \textbf{MAE} & \textbf{MSE} & \textbf{R2} & \textbf{Method} \\ 
+        \textbf{Phase Number} & \textbf{MAE} & \textbf{MSE} & \textbf{R2} & \textbf{Method} \\
         \hline
-        Phase 2 & 0.163 & 1.664 & -0.016 & LGBM Embed-Linear \\ 
-        Phase 3 & \textbf{0.150} & \textbf{0.239} & 0.065 & LGBM Embed-Linear \\ 
-        Phase 3 with removing Number of Reviews & 0.158 & 0.849 & \textbf{0.074} & LGBM Embed-Linear \\ 
+        Phase 2 & 0.163 & 1.664 & -0.016 & LGBM Embed-Linear \\
+        Phase 3 & \textbf{0.150} & \textbf{0.239} & 0.065 & LGBM Embed-Linear \\
+        Phase 3 with removing Number of Reviews & 0.158 & 0.849 & \textbf{0.074} & LGBM Embed-Linear \\
         \hline
-        Phase 2 & 0.159 & 1.608 & 0.018 & RF Pred \\ 
-        Phase 3 & \textbf{0.152} & \textbf{0.235} & 0.079 & RF Pred \\ 
-        Phase 3 with removing Number of Reviews & 0.156 & 0.838 & \textbf{0.086} & RF Pred \\ 
+        Phase 2 & 0.159 & 1.608 & 0.018 & RF Pred \\
+        Phase 3 & \textbf{0.152} & \textbf{0.235} & 0.079 & RF Pred \\
+        Phase 3 with removing Number of Reviews & 0.156 & 0.838 & \textbf{0.086} & RF Pred \\
         \hline
-        Phase 2 & 0.154 & 1.633 & 0.002 & SGD Assoc \\ 
-        Phase 3 & \textbf{0.149} & \textbf{0.242} & 0.052 & SGD Assoc \\ 
-        Phase 3 with removing Number of Reviews & 0.152 & 0.831 & \textbf{0.094} & SGD Assoc \\ 
+        Phase 2 & 0.154 & 1.633 & 0.002 & SGD Assoc \\
+        Phase 3 & \textbf{0.149} & \textbf{0.242} & 0.052 & SGD Assoc \\
+        Phase 3 with removing Number of Reviews & 0.152 & 0.831 & \textbf{0.094} & SGD Assoc \\
         \hline
     \end{tabular}%
     }
@@ -186,16 +186,16 @@ Regarding predicting Minimum Nights, we also compare the results from Phase 3 wi
     \resizebox{\textwidth}{!}{%
     \begin{tabular}{|c|c|c|c|c|}
         \hline
-        \textbf{Phase Number} & \textbf{MAE} & \textbf{MSE} & \textbf{R2} & \textbf{Method} \\ 
+        \textbf{Phase Number} & \textbf{MAE} & \textbf{MSE} & \textbf{R2} & \textbf{Method} \\
         \hline
-        Phase 3 & 0.195 & 0.241 & 0.119 & LGBM Embed-Linear \\ 
-        Phase 3 without Number of Reviews & \textbf{0.187} & \textbf{0.181} & \textbf{0.231} & LGBM Embed-Linear \\ 
+        Phase 3 & 0.195 & 0.241 & 0.119 & LGBM Embed-Linear \\
+        Phase 3 without Number of Reviews & \textbf{0.187} & \textbf{0.181} & \textbf{0.231} & LGBM Embed-Linear \\
         \hline
-        Phase 3 & \textbf{0.194} & 0.246 & 0.100 & RF Pred \\ 
-        Phase 3 without Number of Reviews & 0.195 & \textbf{0.206} & \textbf{0.126} & RF Pred \\ 
+        Phase 3 & \textbf{0.194} & 0.246 & 0.100 & RF Pred \\
+        Phase 3 without Number of Reviews & 0.195 & \textbf{0.206} & \textbf{0.126} & RF Pred \\
         \hline
-        Phase 3 & \textbf{0.230} & \textbf{0.274} & \textbf{-0.001} & SGD Assoc \\ 
-        Phase 3 without Number of Reviews & 0.243 & 0.276 & -0.156 & SGD Assoc \\ 
+        Phase 3 & \textbf{0.230} & \textbf{0.274} & \textbf{-0.001} & SGD Assoc \\
+        Phase 3 without Number of Reviews & 0.243 & 0.276 & -0.156 & SGD Assoc \\
         \hline
     \end{tabular}%
     }
@@ -203,16 +203,7 @@ Regarding predicting Minimum Nights, we also compare the results from Phase 3 wi
     \label{tab:df_analyze_predicting_nights}
 \end{table}
 
-We can deduce from the results that our further preprocessing in Phase 3 made a huge enhancement in the results compared to Phase 2 in properties price predictions, which shows the robustness of our approach. Moreover, removing `number\_of\_features' attribute as per Dr. Jacob suggestion seems to have a negative impact on the losses of prices predictions, but it improves the R2 score. We have shown also from the illustration of our results that our method is competent with other similar and proven work in the literature. Regarding predicting Minimum Nights, we compared both of our Phase 3 runs on this target attribute and it was shown that removing `number\_of\_features' attributes may likely produce an enhancment in some models performances.
-
-
-
-
-
-
-
-
-
+We can deduce from the results that our further preprocessing in Phase 3 made a huge enhancement in the results compared to Phase 2 in properties price predictions, which shows the robustness of our approach. Moreover, removing `number\_of\_reviews' attribute as per Dr. Jacob suggestion seems to have a negative impact on the losses of prices predictions, but it improves the R2 score. We have shown also from the illustration of our results that our method is competent with other similar and proven work in the literature. Regarding predicting Minimum Nights, we compared both of our Phase 3 runs on this target attribute and it was shown that removing `number\_of\_reviews' attributes may likely produce an enhancment in some models performances.
 
 
 \newpage
@@ -220,10 +211,10 @@ We can deduce from the results that our further preprocessing in Phase 3 made a 
 \section*{References}
 \begin{enumerate}
   \item Li, Chenxi. (2024). House price prediction using machine learning. Applied and Computational Engineering. 53. 225-237. 10.54254/2755-2721/53/20241426.
-  \item el Mouna, Lale \& Hassan, Silkan \& Haynf, Youssef \& Nann, Mohamedade \& Koumetio Tekouabou, Cédric Stéphane. (2023). A Comparative Study of Urban House Price Prediction using Machine Learning Algorithms. E3S Web of Conferences. 418. 10.1051/e3sconf/202341803001. 
-  \item Maloku, Fatbardha. (2024). House Price Prediction Using Machine Learning and Artificial Intelligence. Journal of Artificial Intelligence \& Cloud Computing. Volume 3(4): 1- 10. 1-10. 10.47363/JAICC/2024(3)357. 
+  \item el Mouna, Lale \& Hassan, Silkan \& Haynf, Youssef \& Nann, Mohamedade \& Koumetio Tekouabou, Cédric Stéphane. (2023). A Comparative Study of Urban House Price Prediction using Machine Learning Algorithms. E3S Web of Conferences. 418. 10.1051/e3sconf/202341803001.
+  \item Maloku, Fatbardha. (2024). House Price Prediction Using Machine Learning and Artificial Intelligence. Journal of Artificial Intelligence \& Cloud Computing. Volume 3(4): 1- 10. 1-10. 10.47363/JAICC/2024(3)357.
   \item Rezazadeh Kalehbasti, P., Nikolenko, L., Rezaei, H. (2021). Airbnb Price Prediction Using Machine Learning and Sentiment Analysis. In: Holzinger, A., Kieseberg, P., Tjoa, A.M., Weippl, E. (eds) Machine Learning and Knowledge Extraction. CD-MAKE 2021. Lecture Notes in Computer Science(), vol 12844. Springer, Cham. https://doi.org/10.1007/978-3-030-84060-0\_11
-  \item Luo, Tiejian \& Chen, Su \& Xu, Guandong \& Zhou, Jia. (2013). Sentiment Analysis. 10.1007/978-1-4614-7202-5\_4. 
+  \item Luo, Tiejian \& Chen, Su \& Xu, Guandong \& Zhou, Jia. (2013). Sentiment Analysis. 10.1007/978-1-4614-7202-5\_4.
   \item Mikolov, Tomas \& Kai, Chen \& Corrado,Greg and Dean, Jeffrey. (2013). Efficient Estimation of Word Representations in Vector Space. https://arxiv.org/abs/1301.3781
   \item Wang, Haoqian. (2023). Predicting Airbnb Listing Price with Different models. Highlights in Science, Engineering and Technology. 47. 79-86. 10.54097/hset.v47i.8169.
   \item Hancock, J.T., Khoshgoftaar, T.M. Survey on categorical data for neural networks. J Big Data 7, 28 (2020). https://doi.org/10.1186/s40537-020-00305-w
