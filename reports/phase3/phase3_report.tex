@@ -17,22 +17,22 @@
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=8cm]{../stfx_logo.png}\par
+  \includegraphics[width=8cm]{../stfx_logo.png}\\
   \vspace{1cm}
-  {\scshape\Large CSCI - 525: Machine Learning Design \par}
+  {\scshape\Large CSCI - 525: Machine Learning Design \\}
   \vspace{0.5cm}
-  {\large Dr. Jacob Levman \par}
+  {\large Dr. Jacob Levman \\}
   \vspace{1cm}
-  {\Large Phase 3 Report \par}
-  \vspace{1cm}
-  {\large Khan, Salal Ali\\ \texttt{202307216 - x2023flb@stfx.ca} \par}
+  {\Large Phase 3 Report \\}
+  \vspace{1.8cm}
+  {\large Khan, Salal Ali\\ \texttt{202307216 - x2023flb@stfx.ca} \\}
   \vspace{0.5cm}
-  {\large Hussain, Moayadeldin\\ \texttt{202407556 - x2024ghl@stfx.ca} \par}
+  {\large Hussain, Moayadeldin\\ \texttt{202407556 - x2024ghl@stfx.ca} \\}
   \vspace{0.5cm}
-  {\large Javed, Muhammad\\ \texttt{202303808 - x2023dvh@stfx.ca} \par}
+  {\large Javed, Muhammad\\ \texttt{202303808 - x2023dvh@stfx.ca} \\}
   \vfill
   \vspace{0.5cm}
-  {\large Oct 20, 2024 \par}
+  {\large Oct 20, 2024 \\}
 \end{figure}
 
 \end{titlepage}
@@ -41,11 +41,11 @@
 
 We are currently analyzing Airbnb's 2023 New York City dataset and are using machine learning to predict property prices. The real estate industry is critical for economic development and society progress, reflecting the aspirations of people, families and the overall social health of the region [1]. In the past, knowing property prices relied heavily on human experience and conventional methods. However, these approaches usually did not manage to success to account for the complexity and non-linear relationships of housing market data. With machine learning advancements, the scene has changed with the ability to extract precious information from large volumes of data [2]. Addressing the challenges, predicting house prices accurately remains demanding due to the multitude of influencing factors, as location, size, house quality, condition, etc. [3]. We are looking forward in our work to acquire knowledge from the literature of different models used and address the existing challenges in such problem.
 
-One of the most interesting research work we found on utilizing AI in Airbnb datasets price prediction was founded in [4] by Stanford Researchers. They used plenty of models to address their target, including Ridge Regression, K-means Clustering, Support Vector Regression, Neural Netowrks and Gradient Boosting Tree Ensemble. They also used Feature Selection and Sentiment Analysis. Sentiment Analysis refers to the application of natural language processing to identify and classify subjective opinions in source materials (e.g., a document or a sentence) [5]. However, this topic is beyond our scope in our Project 1 at the course becuase it depends on transforming the words and sentences to a different feature space using a technique called word embeddings, as Word2Vec [6]. Moreover, the work in [7] focused also on Predicting Airbnb Listing Price with multiple models, utilizing Boston Airbnb open data set from Kaggle, which includes 3, 585 listings between 2016 and 2017. They used Linear Regression, K-nearest neighbor regression and Gradient Boosting regression. The authors in [3] depended on using Linear Regression, and Random Forests. In [2], Linear Regression, Random Forest Regression and Gradient Boosting Regression.
+One of the most interesting research work we found on utilizing AI in Airbnb datasets price prediction was founded in [4] by Stanford Researchers. They used plenty of models to address their target, including Ridge Regression, K-means Clustering, Support Vector Regression, Neural Networks and Gradient Boosting Tree Ensemble. They also used Feature Selection and Sentiment Analysis. Sentiment Analysis refers to the application of natural language processing to identify and classify subjective opinions in source materials (e.g., a document or a sentence) [5]. However, this topic is beyond our scope in our Project 1 at the course becauase it depends on transforming the words and sentences to a different feature space using a technique called word embeddings, as Word2Vec [6]. Moreover, the work in [7] focused also on Predicting Airbnb Listing Price with multiple models, utilizing Boston Airbnb open data set from Kaggle, which includes 3, 585 listings between 2016 and 2017. They used Linear Regression, K-nearest neighbor regression and Gradient Boosting regression. The authors in [3] depended on using Linear Regression, and Random Forests. In [2], Linear Regression, Random Forest Regression and Gradient Boosting Regression.
 
 In [4], their experiments involved Mean absolute error (MAE), mean squared error (MSE) and R2 score were used to evaluate their training models. Among the models tested, Support Vector Regression performed the best and produced 69\% R2 score, 0.147 MSE on test split, and 0.2132 on MAE. In [3], the Random Forest Regressor model had high accuracy store with 97.3\% for training set and 82.3\% for the testing set, in comparison with the linear regression model with only 79.4\% and 58.9\% for training and testing. Hence, the authors concluded that the Random Regression model is the best model for study. In [2], they used MAE, RMSE and R2 Score, mostly similar to work in [4], as performance metrics. The authors in [2] found that R2 scores in their work exceeds that in [4] for two models of the three they used, achieving 0.822 and 0.828 with both Random Forest and Gradient Boosting repsectively.
 
-We hypothesize that the use of open source machine learning software applied to New York AirBnb's 2023 dataset may produce useful technology for House Prices prediction and analysis. We hypothesize that applying different Machine Learning, and Preprocessing technqiues, according also to our discussions with Dr. Jacob, will yield to improvments in property price and minimum nights.
+We hypothesize that the use of open source machine learning software applied to New York AirBnb's 2023 dataset may produce useful technology for House Prices prediction and analysis. We hypothesize that applying different Machine Learning, and Preprocessing technqiues, according also to our discussions with Dr. Jacob, will yield to improvements in property price and minimum nights.
 
 \section*{Methods}
 
@@ -92,7 +92,7 @@ As mentioned in the project proposal, our first two main goals is to predict the
 \begin{enumerate}
     \item Prices: We found out there are 27 records having the label price "zero". We consider this as noise and practically unachievable because basically no one would rent their property in real life for free (unless there are some relationship between the landlord and the tenant that we wouldn't be able to figure out from our features, and something out of the scope and focus of our work.) So we decided to remove all these 27 records.
 
-    \item Minimum Nights: We defined outliers as the number of of nights that appear only once. This means we retail all records where the minimum nights value is repeated at least twice. During our exploration, we found out 7,946 records falling under this criteria. Hence, we decided to remove them.
+    \item Minimum Nights: We defined outliers as the number of of nights that appear only once. This means we retain all records where the minimum nights value is repeated at least twice. During our exploration, we found out 7,946 records falling under this criteria. Hence, we decided to remove them.
 \end{enumerate}
 
 After cleaning the dataset, the number of records left reduced to 34,977 records, which indicates basically that many houses that were given the label price "zero" had a minimum nights stay number that was repeated only once, we consider this as another indication of them being truly outliers. The distribution of Minimum Nights attributes after removing the outliers defined in (2) below is shown as in Figure \ref{histo}. \newline
