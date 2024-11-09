@@ -1,0 +1,15 @@
+##### First Run #####
+python3 -X faulthandler df-analyze.py --df data_preprocessed.csv --target price   --outdir ./gandalf_test_results   --mode regress   --regressors gandalf  --feat-select none   --embed-select none   --wrapper-select none   --norm robust   --nan drop median   --htune-trials 8   --htune-cls-metric auroc   --htune-reg-metric mae   --test-val-size 0.4 >> gandalf_results.txt
+
+##### Second Run ######
+
+python3 -X faulthandler df-analyze.py --df data_preprocessed.csv --target minimum_nights   --outdir ./gandalf_test_results   --mode regress   --regressors gandalf  --feat-select none   --embed-select none   --wrapper-select none   --norm robust   --nan drop median   --htune-trials 8   --htune-cls-metric auroc   --htune-reg-metric mae   --test-val-size 0.4 >> gandalf_results.txt
+
+##### Third Run #####
+
+python3 -X faulthandler df-analyze.py --df data_preprocessed_without_number_of_reviews.csv --target minimum_nights   --outdir ./gandalf_test_results   --mode regress   --regressors gandalf  --feat-select none   --embed-select none   --wrapper-select none   --norm robust   --nan drop median   --htune-trials 8   --htune-cls-metric auroc   --htune-reg-metric mae   --test-val-size 0.4 >> gandalf_results.txt
+
+
+##### Fourth Run #####
+
+python3 -X faulthandler df-analyze.py --df data_preprocessed_without_number_of_reviews.csv --target price   --outdir ./gandalf_test_results   --mode regress   --regressors gandalf  --feat-select none   --embed-select none   --wrapper-select none   --norm robust   --nan drop median   --htune-trials 8   --htune-cls-metric auroc   --htune-reg-metric mae   --test-val-size 0.4 >> gandalf_results.txt
