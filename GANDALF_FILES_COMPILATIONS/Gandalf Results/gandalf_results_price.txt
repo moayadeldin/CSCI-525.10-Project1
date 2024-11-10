@@ -1,0 +1,48 @@
+<class 'tuple'> ('dummy', 'knn', 'lgbm', 'sgd', 'lr')
+<class 'list'> ['gandalf']
+<class 'list'> [None]
+<class 'list'> [None]
+To silence these warnings, use `--verbosity=0`.
+[]
+Tuning Dummy Regressor for selection=none
+Tuning Dummy Regressor for selection=assoc
+Tuning Dummy Regressor for selection=pred
+Tuning GANDALF - Gated Adaptive Network for selection=none
+Tuning GANDALF - Gated Adaptive Network for selection=assoc
+Tuning GANDALF - Gated Adaptive Network for selection=pred
+# Final Model Performances
+
+## Training set performance
+
+model    selection    embed_selector      mae    mdae    msqe      r2    var-exp
+-------  -----------  ----------------  -----  ------  ------  ------  ---------
+gandalf  assoc        none              0.144   0.063   0.984   0.013      0.016
+gandalf  none         none              0.144   0.065   0.991   0.006      0.010
+gandalf  pred         none              0.160   0.095   0.995   0.002      0.002
+dummy    assoc        none              0.163   0.081   1.006  -0.009      0.000
+dummy    none         none              0.163   0.081   1.006  -0.009      0.000
+dummy    pred         none              0.163   0.081   1.006  -0.009      0.000
+
+## Holdout set performance
+
+model    selection    embed_selector      mae    mdae    msqe      r2    var-exp
+-------  -----------  ----------------  -----  ------  ------  ------  ---------
+gandalf  assoc        none              0.154   0.074   0.291   0.054      0.067
+gandalf  none         none              0.157   0.073   0.303   0.015      0.044
+gandalf  pred         none              0.173   0.103   0.373  -0.214     -0.206
+dummy    assoc        none              0.188   0.098   0.324  -0.053      0.000
+dummy    none         none              0.188   0.098   0.324  -0.053      0.000
+dummy    pred         none              0.188   0.098   0.324  -0.053      0.000
+
+## 5-fold performance on holdout set
+
+model    selection    embed_selector      mae    mdae    msqe       r2    var-exp
+-------  -----------  ----------------  -----  ------  ------  -------  ---------
+gandalf  pred         none              0.153   0.072   0.294    0.043      0.063
+gandalf  assoc        none              0.154   0.077   0.290    0.056      0.068
+dummy    assoc        none              0.186   0.107   0.317   -0.032      0.000
+dummy    none         none              0.186   0.107   0.317   -0.032      0.000
+dummy    pred         none              0.186   0.107   0.317   -0.032      0.000
+gandalf  none         none              0.210   0.106  11.443  -38.694    -38.663
+
+

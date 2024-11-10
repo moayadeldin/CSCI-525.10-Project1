@@ -1,0 +1,144 @@
+<class 'tuple'> ('dummy', 'knn', 'lgbm', 'sgd', 'lr')
+<class 'list'> ['gandalf']
+<class 'list'> [None]
+<class 'list'> [None]
+To silence these warnings, use `--verbosity=0`.
+[]
+Tuning Dummy Regressor for selection=none
+Tuning Dummy Regressor for selection=assoc
+Tuning Dummy Regressor for selection=pred
+Tuning GANDALF - Gated Adaptive Network for selection=none
+Tuning GANDALF - Gated Adaptive Network for selection=assoc
+Tuning GANDALF - Gated Adaptive Network for selection=pred
+# Final Model Performances
+
+## Training set performance
+
+model    selection    embed_selector      mae    mdae    msqe      r2    var-exp
+-------  -----------  ----------------  -----  ------  ------  ------  ---------
+gandalf  assoc        none              0.173   0.066   0.270   0.061      0.063
+gandalf  pred         none              0.175   0.057   0.274   0.045      0.047
+dummy    assoc        none              0.177   0.000   0.293  -0.021      0.000
+dummy    none         none              0.177   0.000   0.293  -0.021      0.000
+dummy    pred         none              0.177   0.000   0.293  -0.021      0.000
+gandalf  none         none              0.179   0.059   0.276   0.040      0.043
+
+## Holdout set performance
+
+model    selection    embed_selector      mae    mdae    msqe      r2    var-exp
+-------  -----------  ----------------  -----  ------  ------  ------  ---------
+gandalf  assoc        none              0.264   0.256   0.215  -0.034      0.049
+gandalf  pred         none              0.287   0.328   0.230  -0.108      0.059
+gandalf  none         none              0.287   0.320   0.231  -0.114      0.026
+dummy    assoc        none              0.294   0.414   0.247  -0.189      0.000
+dummy    none         none              0.294   0.414   0.247  -0.189      0.000
+dummy    pred         none              0.294   0.414   0.247  -0.189      0.000
+
+## 5-fold performance on holdout set
+
+model    selection    embed_selector      mae    mdae    msqe      r2    var-exp
+-------  -----------  ----------------  -----  ------  ------  ------  ---------
+gandalf  assoc        none              0.202   0.135   0.180   0.162      0.206
+gandalf  pred         none              0.218   0.157   0.192   0.088      0.132
+gandalf  none         none              0.230   0.165   0.194   0.062      0.128
+dummy    assoc        none              0.275   0.186   0.246  -0.170     -0.000
+dummy    none         none              0.275   0.186   0.246  -0.170     -0.000
+dummy    pred         none              0.275   0.186   0.246  -0.170     -0.000
+
+
+<class 'tuple'> ('dummy', 'knn', 'lgbm', 'sgd', 'lr')
+<class 'list'> ['gandalf']
+<class 'list'> [None]
+<class 'list'> [None]
+To silence these warnings, use `--verbosity=0`.
+[]
+Tuning Dummy Regressor for selection=none
+Tuning Dummy Regressor for selection=assoc
+Tuning Dummy Regressor for selection=pred
+Tuning GANDALF - Gated Adaptive Network for selection=none
+Tuning GANDALF - Gated Adaptive Network for selection=assoc
+Tuning GANDALF - Gated Adaptive Network for selection=pred
+# Final Model Performances
+
+## Training set performance
+
+model    selection    embed_selector      mae    mdae    msqe       r2    var-exp
+-------  -----------  ----------------  -----  ------  ------  -------  ---------
+dummy    assoc        none              0.177   0.000   0.293   -0.021      0.000
+dummy    none         none              0.177   0.000   0.293   -0.021      0.000
+dummy    pred         none              0.177   0.000   0.293   -0.021      0.000
+gandalf  assoc        none              0.187   0.066   0.280    0.026      0.026
+gandalf  none         none              0.197   0.074   0.283    0.014      0.015
+gandalf  pred         none              0.396   0.131  11.695  -39.746    -39.696
+
+## Holdout set performance
+
+model    selection    embed_selector      mae    mdae    msqe       r2    var-exp
+-------  -----------  ----------------  -----  ------  ------  -------  ---------
+gandalf  assoc        none              0.266   0.226   0.214   -0.030      0.004
+gandalf  none         none              0.279   0.275   0.222   -0.068      0.010
+dummy    assoc        none              0.294   0.414   0.247   -0.189      0.000
+dummy    none         none              0.294   0.414   0.247   -0.189      0.000
+dummy    pred         none              0.294   0.414   0.247   -0.189      0.000
+gandalf  pred         none              0.424   0.298   5.446  -25.244    -25.072
+
+## 5-fold performance on holdout set
+
+model    selection    embed_selector      mae    mdae    msqe      r2    var-exp
+-------  -----------  ----------------  -----  ------  ------  ------  ---------
+gandalf  assoc        none              0.230   0.178   0.194   0.085      0.107
+gandalf  none         none              0.236   0.188   0.198   0.067      0.089
+dummy    assoc        none              0.275   0.186   0.246  -0.170     -0.000
+dummy    none         none              0.275   0.186   0.246  -0.170     -0.000
+dummy    pred         none              0.275   0.186   0.246  -0.170     -0.000
+gandalf  pred         none              0.278   0.256   0.217  -0.064     -0.001
+
+
+<class 'tuple'> ('dummy', 'knn', 'lgbm', 'sgd', 'lr')
+<class 'list'> ['gandalf']
+<class 'list'> [None]
+<class 'list'> [None]
+To silence these warnings, use `--verbosity=0`.
+[]
+Tuning Dummy Regressor for selection=none
+Tuning Dummy Regressor for selection=assoc
+Tuning Dummy Regressor for selection=pred
+Tuning GANDALF - Gated Adaptive Network for selection=none
+Tuning GANDALF - Gated Adaptive Network for selection=assoc
+Tuning GANDALF - Gated Adaptive Network for selection=pred
+# Final Model Performances
+
+## Training set performance
+
+model    selection    embed_selector      mae    mdae    msqe      r2    var-exp
+-------  -----------  ----------------  -----  ------  ------  ------  ---------
+gandalf  pred         none              0.144   0.061   0.991   0.006      0.013
+gandalf  assoc        none              0.146   0.062   0.991   0.006      0.012
+gandalf  none         none              0.151   0.072   0.973   0.024      0.024
+dummy    assoc        none              0.163   0.081   1.006  -0.009      0.000
+dummy    none         none              0.163   0.081   1.006  -0.009      0.000
+dummy    pred         none              0.163   0.081   1.006  -0.009      0.000
+
+## Holdout set performance
+
+model    selection    embed_selector      mae    mdae    msqe      r2    var-exp
+-------  -----------  ----------------  -----  ------  ------  ------  ---------
+gandalf  pred         none              0.157   0.070   0.300   0.026      0.059
+gandalf  none         none              0.163   0.083   0.288   0.065      0.067
+gandalf  assoc        none              0.168   0.081   0.305   0.010      0.043
+dummy    assoc        none              0.188   0.098   0.324  -0.053      0.000
+dummy    none         none              0.188   0.098   0.324  -0.053      0.000
+dummy    pred         none              0.188   0.098   0.324  -0.053      0.000
+
+## 5-fold performance on holdout set
+
+model    selection    embed_selector      mae    mdae    msqe      r2    var-exp
+-------  -----------  ----------------  -----  ------  ------  ------  ---------
+gandalf  none         none              0.152   0.075   0.285   0.072      0.078
+gandalf  assoc        none              0.153   0.075   0.290   0.057      0.067
+gandalf  pred         none              0.154   0.078   0.284   0.077      0.080
+dummy    assoc        none              0.186   0.107   0.317  -0.032      0.000
+dummy    none         none              0.186   0.107   0.317  -0.032      0.000
+dummy    pred         none              0.186   0.107   0.317  -0.032      0.000
+
+
